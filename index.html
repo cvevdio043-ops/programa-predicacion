@@ -1,0 +1,156 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Programa de Predicación</title><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#1f6f6b"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Predicación">
+<style>
+:root{--bg:#f6f3ee;--cd:#fff;--ink:#1f2a2e;--mu:#6b767a;--ac:#1f6f6b;--a2:#e3f0ee;--bd:#e5e0d8;--hm:#2f7fb5;--mj:#c05a72;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#14191b;--cd:#1d2528;--ink:#e9eeee;--mu:#8f9ca0;--ac:#4fb3ac;--a2:#1f3a38;--bd:#2c373a}}
+:root[data-theme=dark]{--bg:#14191b;--cd:#1d2528;--ink:#e9eeee;--mu:#8f9ca0;--ac:#4fb3ac;--a2:#1f3a38;--bd:#2c373a}
+*{box-sizing:border-box}html,body{margin:0}body{background:var(--bg);color:var(--ink);font:15px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
+#app{padding:18px 16px 96px;max-width:760px;margin:auto}
+h1{font:600 28px Georgia,serif;margin:6px 0 2px}h2{font:600 20px Georgia,serif;margin:0 0 12px}.m{color:var(--mu);margin:0 0 18px}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.big{background:var(--cd);border:1px solid var(--bd);border-radius:18px;padding:18px;text-align:left;display:flex;flex-direction:column;gap:6px;color:var(--ac)}
+.big b{color:var(--ink);font-size:16px;margin-top:6px}.big span{color:var(--mu);font-size:12.5px}
+.card{background:var(--cd);border:1px solid var(--bd);border-radius:16px;padding:14px;margin-bottom:12px}
+.row{display:flex;align-items:center;gap:10px}.sp{flex:1}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border-radius:12px;border:1px solid var(--bd);background:var(--cd)}
+.btn.p{background:var(--ac);border-color:var(--ac);color:#fff}.btn.d{color:#b3402f}
+.bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+input{font:inherit;color:inherit;background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:10px;width:100%}
+label{display:block;font-size:13px;color:var(--mu);margin-bottom:10px}label input{margin-top:4px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 14px}.ch{padding:8px 14px;border-radius:20px;border:1px solid var(--bd);background:var(--cd)}
+.ch.on,.seg .on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.seg{display:flex;gap:8px;margin-bottom:12px}.seg button{flex:1;padding:10px;border:1px solid var(--bd);border-radius:12px}
+.lb{font-size:13px;color:var(--mu);margin:6px 0 0}
+.ag{width:100%;border-collapse:collapse;font-size:13px}.ag th,.ag td{padding:6px 4px;text-align:center}.ag small{display:block;color:var(--mu);font-weight:400;font-size:10.5px}
+.cb{width:34px;height:34px;border-radius:10px;border:1px solid var(--bd);display:inline-flex;align-items:center;justify-content:center;color:transparent}.cb.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.tag{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--a2);color:var(--ac)}.tag.g0{background:var(--bd);color:var(--mu)}
+.pill{width:9px;height:9px;border-radius:50%;display:inline-block;background:var(--hm)}.pill.M{background:var(--mj)}
+.sl{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:11px 12px;border:1px dashed var(--bd);border-radius:12px;color:var(--mu);margin-top:6px}
+.sl.f{border-style:solid;background:var(--a2);color:var(--ink)}
+.tabs{display:flex;gap:8px;overflow-x:auto;margin-bottom:14px}.tabs .ch{white-space:nowrap}
+.ph{font-size:12px;color:var(--mu);margin:10px 0 0;font-style:italic}
+.sc{overflow-x:auto;border:1px solid var(--bd);border-radius:14px;background:var(--cd)}
+.pt{border-collapse:collapse;min-width:100%}.pt th,.pt td{border:1px solid var(--bd);padding:8px;vertical-align:top;text-align:left;font-size:13px;min-width:120px}
+.pt thead th{background:var(--ac);color:#fff}.pt th small{display:block;font-weight:400;opacity:.8}.pt td span{display:block}.pt .em{color:var(--mu)}.pt td i{display:block;font-size:11px;color:var(--ac);margin-top:4px}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--cd);border-top:1px solid var(--bd);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px))}
+nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;color:var(--mu);padding:4px 0}nav .on{color:var(--ac);font-weight:600}
+.sh{position:fixed;inset:0;background:#0006;display:flex;align-items:flex-end;justify-content:center;z-index:9}.sh[hidden]{display:none}
+.sd{background:var(--bg);width:100%;max-width:760px;max-height:88%;overflow:auto;border-radius:22px 22px 0 0;padding:20px 16px calc(24px + env(safe-area-inset-bottom,0px))}
+#tt{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:20px;font-size:13px;opacity:0;pointer-events:none;transition:.25s;z-index:10;max-width:90%;text-align:center}#tt.s{opacity:1}
+.sw{width:42px;height:24px;border-radius:12px;background:var(--bd);position:relative}.sw:after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s}.sw.on{background:var(--ac)}.sw.on:after{left:21px}
+.pk{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:12px;border-bottom:1px solid var(--bd)}
+.em0{text-align:center;color:var(--mu);padding:40px 10px}
+</style></head><body><div id="app"></div>
+<nav id="nv"></nav><div class="sh" id="sh" hidden onclick="if(event.target==this)cs()"><div class="sd" id="sd"></div></div><div id="tt"></div>
+<script>
+const IC={home:'M3 11l9-8 9 8M5 10v10h14V10',users:'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8',sliders:'M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6',cal:'M3 5h18v16H3zM3 10h18M8 3v4M16 3v4',eye:'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6',archive:'M3 4h18v4H3zM5 8v12h14V8M10 12h4',plus:'M12 5v14M5 12h14',trash:'M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14',edit:'M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z',check:'M20 6L9 17l-5-5',spark:'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z',dl:'M12 3v12M7 10l5 5 5-5M4 21h16',img:'M3 3h18v18H3zM8.5 10a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M21 15l-5-5L5 21',file:'M14 3H6v18h12V7zM14 3v4h4',save:'M5 3h12l4 4v14H3V3zM7 3v6h8V3M7 21v-7h10v7',cloud:'M18 18a4 4 0 0 0 0-8 6 6 0 0 0-11.7 1.5A4.5 4.5 0 0 0 7 18z'};
+const ic=(n,s=20)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="${IC[n]}"/></svg>`;
+const $=s=>document.querySelector(s),uid=()=>Math.random().toString(36).slice(2,9);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const D=['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],DS=['Lun','Mar','Mié','Jue','Vie','Sáb'];
+const fh=t=>t.replace(/^0/,'').replace(':','h'),tr=t=>fh(t.ini)+' – '+fh(t.fin);
+const k=(d,t,l,s)=>[d,t,l,s].join('|'),H=id=>S.herm.find(h=>h.id==id),nm=h=>h?h.nombre+' '+h.apellido:'';
+const nextMon=()=>{const d=new Date();d.setDate(d.getDate()+((8-d.getDay())%7||7));return d.toLocaleDateString('sv')};
+function semL(s){if(!s)return 'Sin fecha';const a=new Date(s+'T12:00'),b=new Date(a);b.setDate(a.getDate()+5);return 'Semana del '+a.toLocaleDateString('es',{day:'numeric',month:'long'})+' al '+b.toLocaleDateString('es',{day:'numeric',month:'long',year:'numeric'})}
+const def=()=>({herm:[],cfg:{dias:[0,1,2,3,4,5],turnos:[['08:00','09:30'],['09:30','11:00'],['11:00','12:30'],['12:30','14:00']].map(([a,b],i)=>({id:'t'+(i+1),ini:a,fin:b})),lugares:[{id:'l1',nombre:'Lugar 1',on:true},{id:'l2',nombre:'Lugar 2',on:false}]},prog:{id:uid(),semana:nextMon(),celdas:{}},saved:null,hist:[],t:0});
+let S=(()=>{try{const j=localStorage.getItem('ppub1');if(j)return JSON.parse(j)}catch(e){}return def()})(),V='home',DT=0,PV=null,F=null,P=null,Q=null,sync='local',DB=null,tm;
+let GH=(()=>{try{return JSON.parse(localStorage.getItem('ppub_gh'))||{}}catch(e){return{}}})(),sha=null,busy=false;
+const ghOK=()=>GH.u&&GH.r&&GH.t;
+function save(){S.t=Date.now();try{localStorage.setItem('ppub1',JSON.stringify(S))}catch(e){}clearTimeout(tm);if(ghOK())tm=setTimeout(push,1500)}
+const gh=(m,b)=>fetch(`https://api.github.com/repos/${GH.u}/${GH.r}/contents/datos.json`+(m=='GET'?'?_='+Date.now():''),{method:m,cache:'no-store',headers:{Authorization:'Bearer '+GH.t,Accept:'application/vnd.github+json'},body:b});
+const b64=s=>{let r='';new TextEncoder().encode(s).forEach(x=>r+=String.fromCharCode(x));return btoa(r)};
+const unb=s=>new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\s/g,'')),c=>c.charCodeAt(0)));
+async function pull(){if(!ghOK()){sync='nocfg';st();return}sync='sync';st();
+try{const r=await gh('GET');if(r.status==404){sha=null;await push();return}if(!r.ok)throw r.status;const j=await r.json();sha=j.sha;const d=JSON.parse(unb(j.content));
+if(d.t>S.t){S=d;try{localStorage.setItem('ppub1',JSON.stringify(S))}catch(e){}render()}else if(d.t<S.t){await push();return}sync='ok'}catch(e){sync=e==401||e==403?'auth':'err'}st()}
+async function push(){if(!ghOK()||busy)return;busy=true;sync='sync';st();
+try{for(let i=0;i<2;i++){const r=await gh('PUT',JSON.stringify({message:'Actualización '+new Date().toISOString(),content:b64(JSON.stringify(S)),...(sha?{sha}:{})}));
+if(r.ok){sha=(await r.json()).content.sha;sync='ok';break}
+if(r.status==409||r.status==422){const g=await gh('GET');if(g.ok){sha=(await g.json()).sha;continue}}throw r.status}
+if(sync=='sync')sync='err'}catch(e){sync=e==401||e==403?'auth':'err'}busy=false;st()}
+function st(){const e=$('#sync');if(e)e.innerHTML=ic('cloud',16)+' '+({local:'Guardado en este dispositivo',nocfg:'Solo en este dispositivo · conecta GitHub en Ajustes',sync:'Sincronizando…',ok:'Sincronizado con GitHub',err:'No se pudo sincronizar; se reintentará al guardar',auth:'Token o repositorio incorrecto'})[sync]}
+function gsv(){GH.u=(GH.u||'').trim();GH.r=(GH.r||'programa-datos').trim();GH.t=(GH.t||'').trim();if(!ghOK()){toast('Completa usuario y token');return}try{localStorage.setItem('ppub_gh',JSON.stringify(GH))}catch(e){}pull()}
+function gx(){GH={};sha=null;try{localStorage.removeItem('ppub_gh')}catch(e){}sync='nocfg';render()}
+const toast=m=>{const t=$('#tt');t.textContent=m;t.className='s';setTimeout(()=>t.className='',2400)};
+const sheet=h=>{$('#sd').innerHTML=h;$('#sh').hidden=false},cs=()=>$('#sh').hidden=true;
+const ask=(m,fn)=>{Q=fn;sheet(`<h2>${m}</h2><div class="row"><button class="btn sp" onclick="cs()">Cancelar</button><button class="btn p sp" onclick="cs();Q()">Confirmar</button></div>`)};
+const go=v=>{V=v;if(v!='prev')PV=null;render();scrollTo(0,0)};
+const NAV=[['home','home','Inicio'],['herm','users','Hermanos'],['cfg','sliders','Ajustes'],['prog','cal','Programa'],['prev','eye','Vista'],['hist','archive','Archivo']];
+function render(){$('#app').innerHTML=VW[V]();$('#nv').innerHTML=NAV.map(([v,i,t])=>`<button class="${V==v?'on':''}" onclick="go('${v}')">${ic(i,22)}${t}</button>`).join('');st()}
+const VW={
+home:()=>`<h1>Predicación pública</h1><p class="m">Programa semanal de turnos</p><div class="g">${[['herm','users','Hermanos',S.herm.length+' registrados'],['cfg','sliders','Configuración','Días, turnos y lugares'],['prog','cal','Programa','Armar y llenar turnos'],['prev','eye','Vista previa','Exportar PDF o imagen'],['hist','archive','Archivo',S.hist.length+' guardados']].map(([v,i,t,s])=>`<button class="big" onclick="go('${v}')">${ic(i,30)}<b>${t}</b><span>${s}</span></button>`).join('')}</div><p class="m" style="margin-top:20px;display:flex;gap:6px;align-items:center" id="sync"></p>`,
+herm:()=>`<div class="row"><h2 class="sp">Hermanos</h2><button class="btn p" onclick="hf()">${ic('plus',18)}Añadir</button></div>${S.herm.length?[...S.herm].sort((a,b)=>nm(a).localeCompare(nm(b))).map(h=>`<button class="card row" style="width:100%;text-align:left" onclick="hv('${h.id}')"><span class="pill ${h.sexo}"></span><div class="sp"><b>${esc(nm(h))}</b><div class="m" style="margin:0;font-size:12.5px">${Object.keys(h.disp).sort().map(d=>DS[d]).join(' · ')||'Sin días marcados'}</div></div><span class="tag">${h.sexo=='H'?'Hermano':'Hermana'}</span></button>`).join(''):'<div class="em0">Aún no hay hermanos.<br>Toca «Añadir» para registrar el primero.</div>'}`,
+cfg:()=>{const c=S.cfg;return`<h2>Configuración</h2><div class="card"><b>Días del programa</b><div class="chips">${D.map((n,i)=>`<button class="ch ${c.dias.includes(i)?'on':''}" onclick="cd(${i})">${DS[i]}</button>`).join('')}</div></div>
+<div class="card"><div class="row"><b class="sp">Turnos</b><button class="btn" onclick="at()">${ic('plus',16)}Turno</button></div>${c.turnos.map((t,i)=>`<div class="row" style="margin-top:10px"><span style="width:26px;color:var(--mu)">T${i+1}</span><input type="time" value="${t.ini}" onchange="S.cfg.turnos[${i}].ini=this.value;save()"><input type="time" value="${t.fin}" onchange="S.cfg.turnos[${i}].fin=this.value;save()"><button class="btn d" onclick="dt(${i})">${ic('trash',16)}</button></div>`).join('')}</div>
+<div class="card"><div class="row"><b class="sp">Lugares</b><button class="btn" onclick="al()">${ic('plus',16)}Lugar</button></div>${c.lugares.map((l,i)=>`<div class="row" style="margin-top:10px"><input value="${esc(l.nombre)}" oninput="S.cfg.lugares[${i}].nombre=this.value;save()"><button class="sw ${l.on?'on':''}" title="Activo" onclick="S.cfg.lugares[${i}].on=!S.cfg.lugares[${i}].on;save();render()"></button><button class="btn d" onclick="dl_(${i})">${ic('trash',16)}</button></div>`).join('')}<p class="m" style="margin:10px 0 0;font-size:12.5px">El interruptor activa o pausa cada lugar.</p></div>
+<div class="card"><b>Sincronización con GitHub</b><p class="m" style="margin:4px 0 10px;font-size:12.5px">Usa un repositorio privado y un token limitado a ese repositorio. Se guarda solo en este dispositivo.</p><label>Usuario de GitHub<input value="${esc(GH.u||'')}" oninput="GH.u=this.value" autocapitalize="off" autocomplete="off"></label><label>Repositorio de datos<input value="${esc(GH.r||'programa-datos')}" oninput="GH.r=this.value" autocapitalize="off" autocomplete="off"></label><label>Token<input type="password" value="${esc(GH.t||'')}" oninput="GH.t=this.value" autocomplete="off"></label><div class="bar" style="margin:0"><button class="btn p" onclick="gsv()">${ic('cloud',18)}Conectar y sincronizar</button>${ghOK()?`<button class="btn d" onclick="gx()">Desconectar</button>`:''}</div><p class="m" id="sync" style="margin:10px 0 0;display:flex;gap:6px;align-items:center"></p></div>
+<button class="btn p" style="width:100%;justify-content:center" onclick="save();toast('Configuración guardada');go('prog')">${ic('check',18)}Guardar y ir al programa</button>`},
+prog:()=>{const c=S.cfg,act=c.lugares.filter(l=>l.on);if(!c.dias.includes(DT))DT=c.dias[0];const tot=c.dias.length*c.turnos.length*act.length*2,fl=Object.keys(S.prog.celdas).filter(x=>{const[d,t,l]=x.split('|');return c.dias.includes(+d)&&c.turnos.some(y=>y.id==t)&&act.some(y=>y.id==l)}).length;
+return`<h2>Programa</h2><div class="card"><label>Semana (lunes)<input type="date" value="${S.prog.semana}" onchange="S.prog.semana=this.value;save()"></label><div class="bar" style="margin:0"><button class="btn p" onclick="auto()">${ic('spark',18)}Llenado automático</button><button class="btn" onclick="ask('¿Vaciar todas las casillas?',clr)">${ic('trash',18)}Limpiar</button><button class="btn" onclick="ask('¿Empezar un programa nuevo?',np)">${ic('plus',18)}Nuevo</button></div><p class="m" style="margin:10px 0 0;font-size:12.5px">${fl} de ${tot} casillas llenas</p></div>
+<div class="tabs">${c.dias.map(d=>`<button class="ch ${d==DT?'on':''}" onclick="DT=${d};render()">${D[d]}</button>`).join('')}</div>
+${c.turnos.map((t,i)=>`<div class="card"><b>Turno ${i+1}</b> <span class="m" style="margin:0">· ${tr(t)}</span>${act.map(l=>`${act.length>1?`<p class="ph">${esc(l.nombre)}</p>`:''}${[0,1].map(s=>{const h=H(S.prog.celdas[k(DT,t.id,l.id,s)]);return`<button class="sl ${h?'f':''}" onclick="pk(${DT},'${t.id}','${l.id}',${s})">${h?`<span class="pill ${h.sexo}"></span>${esc(nm(h))}`:ic('plus',16)+' Asignar'}</button>`}).join('')}`).join('')||'<p class="m">Activa un lugar en Configuración.</p>'}</div>`).join('')}
+<button class="btn p" style="width:100%;justify-content:center" onclick="gp()">${ic('save',18)}Guardar programa</button>`},
+prev:()=>{const s=PV||S.saved;if(!s)return'<h2>Vista previa</h2><div class="em0">Aún no hay un programa guardado.<br>Guárdalo desde la sección Programa.</div>';const L=s.lugares;
+return`<h2>Vista previa</h2><p class="m" style="margin-top:-6px">${semL(s.semana)}</p><div class="bar"><button class="btn p" onclick="ex('pdf')">${ic('file',18)}Exportar PDF</button><button class="btn" onclick="ex('png')">${ic('img',18)}Exportar imagen</button></div>
+<div class="sc"><table class="pt"><thead><tr><th></th>${s.dias.map(d=>`<th>${D[d]}</th>`).join('')}</tr></thead>${s.turnos.map((t,i)=>`<tr><th style="background:var(--a2);color:var(--ink)">Turno ${i+1}<small>${tr(t)}</small></th>${s.dias.map(d=>`<td>${L.map(l=>`${L.length>1?`<i>${esc(l.nombre)}</i>`:''}${[0,1].map(x=>{const n=s.nombres[s.celdas[k(d,t.id,l.id,x)]];return n?`<span>${esc(n)}</span>`:'<span class="em">—</span>'}).join('')}`).join('')}</td>`).join('')}</tr>`).join('')}</table></div>`},
+hist:()=>`<h2>Archivo</h2>${S.hist.length?S.hist.map(h=>`<div class="card"><b>${semL(h.semana)}</b><div class="m" style="margin:2px 0 10px;font-size:12.5px">Guardado el ${new Date(h.fecha).toLocaleDateString('es',{day:'numeric',month:'short',year:'numeric'})} · ${Object.keys(h.celdas).length} asignaciones</div><div class="bar" style="margin:0"><button class="btn" onclick="hvw('${h.id}')">${ic('eye',16)}Ver</button><button class="btn" onclick="hed('${h.id}')">${ic('edit',16)}Editar</button><button class="btn d" onclick="ask('¿Borrar este programa del archivo?',()=>hdel('${h.id}'))">${ic('trash',16)}</button></div></div>`).join(''):'<div class="em0">El archivo está vacío.<br>Los programas que guardes aparecerán aquí.</div>'}`};
+/* Hermanos */
+function hf(id){F=id?JSON.parse(JSON.stringify(H(id))):{id:null,nombre:'',apellido:'',sexo:'H',disp:{}};fr()}
+function fr(){sheet(`<h2>${F.id?'Editar hermano':'Nuevo hermano'}</h2><label>Nombre<input value="${esc(F.nombre)}" oninput="F.nombre=this.value"></label><label>Apellido<input value="${esc(F.apellido)}" oninput="F.apellido=this.value"></label>
+<div class="seg">${[['H','Hermano'],['M','Hermana']].map(([v,t])=>`<button class="${F.sexo==v?'on':''}" onclick="F.sexo='${v}';fr()">${t}</button>`).join('')}</div>
+<p class="lb">Días disponibles</p><div class="chips">${DS.map((n,i)=>`<button class="ch ${F.disp[i]?'on':''}" onclick="fd(${i})">${n}</button>`).join('')}</div>${agd(F.disp,true)}
+<div class="row" style="margin-top:14px"><button class="btn sp" onclick="cs()">Cancelar</button><button class="btn p sp" onclick="fs()">${ic('check',18)}Guardar</button></div>`)}
+function agd(disp,ed){const T=S.cfg.turnos,ds=Object.keys(disp).sort();if(!ds.length)return'<p class="m">Sin días marcados.</p>';return`<p class="lb">${ed?'Turnos en que puede ayudar':'Disponibilidad'}</p><table class="ag"><tr><th></th>${T.map((t,i)=>`<th>T${i+1}<small>${tr(t)}</small></th>`).join('')}</tr>${ds.map(d=>`<tr><th>${DS[d]}</th>${T.map(t=>`<td><button class="cb ${disp[d].includes(t.id)?'on':''}" ${ed?`onclick="ft(${d},'${t.id}')"`:''}>${ic('check',16)}</button></td>`).join('')}</tr>`).join('')}</table>`}
+function fd(d){if(F.disp[d])delete F.disp[d];else F.disp[d]=[];fr()}
+function ft(d,t){const a=F.disp[d],i=a.indexOf(t);i<0?a.push(t):a.splice(i,1);fr()}
+function fs(){if(!F.nombre.trim()){toast('Escribe el nombre');return}F.nombre=F.nombre.trim();F.apellido=F.apellido.trim();if(F.id){S.herm[S.herm.findIndex(h=>h.id==F.id)]=F}else{F.id=uid();S.herm.push(F)}save();cs();render();toast('Hermano guardado')}
+function hv(id){const h=H(id);sheet(`<h2>${esc(nm(h))}</h2><p class="m" style="margin-top:-6px"><span class="pill ${h.sexo}"></span> ${h.sexo=='H'?'Hermano':'Hermana'}</p>${agd(h.disp,false)}<div class="row" style="margin-top:16px"><button class="btn d sp" onclick="ask('¿Borrar a ${esc(h.nombre)}?',()=>hd('${id}'))">${ic('trash',18)}Borrar</button><button class="btn p sp" onclick="hf('${id}')">${ic('edit',18)}Editar</button></div>`)}
+function hd(id){S.herm=S.herm.filter(h=>h.id!=id);for(const x in S.prog.celdas)if(S.prog.celdas[x]==id)delete S.prog.celdas[x];save();render()}
+/* Config */
+function cd(i){const a=S.cfg.dias,j=a.indexOf(i);j<0?(a.push(i),a.sort()):a.length>1&&a.splice(j,1);save();render()}
+function at(){const T=S.cfg.turnos,l=T[T.length-1],m=l?(+l.fin.slice(0,2)*60+ +l.fin.slice(3)):480,e=Math.min(m+90,1439),p=x=>String(Math.floor(x/60)).padStart(2,'0')+':'+String(x%60).padStart(2,'0');T.push({id:uid(),ini:p(m),fin:p(e)});save();render()}
+function dt(i){if(S.cfg.turnos.length>1){S.cfg.turnos.splice(i,1);save();render()}}
+function al(){S.cfg.lugares.push({id:uid(),nombre:'Lugar '+(S.cfg.lugares.length+1),on:true});save();render()}
+function dl_(i){if(S.cfg.lugares.length>1){S.cfg.lugares.splice(i,1);save();render()}}
+/* Programa */
+const cnt=id=>Object.values(S.prog.celdas).filter(x=>x==id).length;
+function pk(d,t,l,s){P={d,t,l,s};const c=S.prog.celdas,act=S.cfg.lugares.filter(x=>x.on),used=new Set();act.forEach(x=>[0,1].forEach(y=>{const i=c[k(d,t,x.id,y)];if(i&&!(x.id==l&&y==s))used.add(i)}));
+const L=S.herm.map(h=>({h,av:(h.disp[d]||[]).includes(t),n:cnt(h.id)})).sort((a,b)=>b.av-a.av||a.n-b.n||nm(a.h).localeCompare(nm(b.h)));
+sheet(`<h2>Elegir hermano</h2>${c[k(d,t,l,s)]?`<button class="btn d" style="margin-bottom:8px" onclick="as('')">${ic('trash',16)}Quitar asignado</button>`:''}${L.map(({h,av,n})=>`<button class="pk" onclick="as('${h.id}')"><span class="pill ${h.sexo}"></span><div class="sp"><b>${esc(nm(h))}</b><div class="m" style="margin:0;font-size:12px">${n} ${n==1?'vez':'veces'} en el programa${used.has(h.id)?' · ya está en este turno':''}</div></div><span class="tag ${av?'':'g0'}">${av?'Disponible':'No marcó'}</span></button>`).join('')||'<div class="em0">Primero añade hermanos.</div>'}`)}
+function as(id){const x=k(P.d,P.t,P.l,P.s);id?S.prog.celdas[x]=id:delete S.prog.celdas[x];save();cs();render()}
+function auto(){const c=S.prog.celdas,cf=S.cfg,act=cf.lugares.filter(l=>l.on),n={};Object.values(c).forEach(i=>n[i]=(n[i]||0)+1);let ok=0,miss=0;
+cf.dias.forEach(d=>cf.turnos.forEach(t=>{const used=new Set();act.forEach(l=>[0,1].forEach(s=>{const i=c[k(d,t.id,l.id,s)];i&&used.add(i)}));
+const pick=sx=>{const a=S.herm.filter(h=>h.sexo==sx&&!used.has(h.id)&&(h.disp[d]||[]).includes(t.id));a.sort((p,q)=>(n[p.id]||0)-(n[q.id]||0)||Math.random()-.5);return a[0]};
+const put=(l,s,h)=>{c[k(d,t.id,l.id,s)]=h.id;used.add(h.id);n[h.id]=(n[h.id]||0)+1;ok++};
+act.forEach(l=>{const a=c[k(d,t.id,l.id,0)],b=c[k(d,t.id,l.id,1)];if(a&&b)return;
+if(!a&&!b){const m=pick('H'),f=pick('M');if(m&&f){put(l,0,m);put(l,1,f)}else miss++;return}
+const o=H(a||b),s=a?1:0,h=o&&pick(o.sexo=='H'?'M':'H');h?put(l,s,h):miss++})}));
+save();render();toast(ok?`Se llenaron ${ok} casillas`+(miss?` · ${miss} parejas sin candidatos`:''):miss?'No hay hermanos disponibles para completar':'Todo está lleno')}
+function clr(){S.prog.celdas={};save();render()}
+function np(){S.prog={id:uid(),semana:nextMon(),celdas:{}};save();render()}
+function snap(){const nombres={};Object.values(S.prog.celdas).forEach(i=>{const h=H(i);if(h)nombres[i]=nm(h)});return{id:S.prog.id,semana:S.prog.semana,dias:[...S.cfg.dias],turnos:JSON.parse(JSON.stringify(S.cfg.turnos)),lugares:S.cfg.lugares.filter(l=>l.on).map(l=>({...l})),celdas:{...S.prog.celdas},nombres,fecha:new Date().toISOString()}}
+function gp(){const s=snap(),i=S.hist.findIndex(x=>x.id==s.id);S.saved=s;i<0?S.hist.unshift(s):S.hist[i]=s;save();toast('Programa guardado');go('prev')}
+/* Archivo */
+function hvw(id){PV=S.hist.find(h=>h.id==id);V='prev';render();scrollTo(0,0)}
+function hed(id){const h=S.hist.find(x=>x.id==id);ask('Se cargará en Programa y reemplazará el borrador actual.',()=>{S.prog={id:h.id,semana:h.semana,celdas:{...h.celdas}};save();go('prog')})}
+function hdel(id){S.hist=S.hist.filter(h=>h.id!=id);if(S.saved&&S.saved.id==id)S.saved=null;save();render()}
+/* Exportar */
+function draw(s){const L=s.lugares,T=s.turnos,Dd=s.dias,cw=320,lw=190,pd=40,top=130,lh=34,lab=L.length>1?28:0,rh=26+L.length*(lab+lh*2+10),W=pd*2+lw+cw*Dd.length,Hh=top+40+rh*T.length+pd,c=document.createElement('canvas');c.width=W;c.height=Hh;const x=c.getContext('2d');
+x.fillStyle='#fff';x.fillRect(0,0,W,Hh);x.fillStyle='#1f6f6b';x.font='bold 40px Georgia,serif';x.fillText('Programa de predicación pública',pd,70);x.fillStyle='#555';x.font='26px sans-serif';x.fillText(semL(s.semana),pd,108);
+x.fillStyle='#1f6f6b';x.fillRect(pd,top,W-pd*2,40);x.fillStyle='#fff';x.font='bold 24px sans-serif';Dd.forEach((d,i)=>x.fillText(D[d],pd+lw+i*cw+14,top+28));
+const fit=(t,m)=>{let f=24;do{x.font=f+'px sans-serif';f--}while(x.measureText(t).width>m&&f>12)};
+T.forEach((t,r)=>{const y=top+40+r*rh;x.fillStyle=r%2?'#f6f3ee':'#fff';x.fillRect(pd,y,W-pd*2,rh);x.fillStyle='#1f2a2e';x.font='bold 24px sans-serif';x.fillText('Turno '+(r+1),pd+14,y+36);x.font='22px sans-serif';x.fillStyle='#666';x.fillText(tr(t),pd+14,y+66);
+Dd.forEach((d,i)=>{let yy=y+14;const px=pd+lw+i*cw+14;L.forEach(l=>{if(lab){x.fillStyle='#1f6f6b';x.font='italic 20px sans-serif';x.fillText(l.nombre,px,yy+20);yy+=lab}[0,1].forEach(sl=>{const n=s.nombres[s.celdas[k(d,t.id,l.id,sl)]];x.fillStyle=n?'#1f2a2e':'#aaa';fit(n||'—',cw-28);x.fillText(n||'—',px,yy+24);yy+=lh});yy+=10})})});
+x.strokeStyle='#d8d2c8';x.lineWidth=1.5;x.strokeRect(pd,top,W-pd*2,40+rh*T.length);for(let i=0;i<=Dd.length;i++){x.beginPath();x.moveTo(pd+lw+i*cw,top);x.lineTo(pd+lw+i*cw,top+40+rh*T.length);x.stroke()}T.forEach((_,r)=>{x.beginPath();x.moveTo(pd,top+40+r*rh);x.lineTo(W-pd,top+40+r*rh);x.stroke()});return c}
+async function pdf(c){const b=new Uint8Array(await(await new Promise(r=>c.toBlob(r,'image/jpeg',.92))).arrayBuffer()),W=c.width,Hh=c.height,E=new TextEncoder(),parts=[],off=[];let len=0;const add=x=>{const u=typeof x=='string'?E.encode(x):x;parts.push(u);len+=u.length},ob=(n,s)=>{off[n]=len;add(n+' 0 obj\n'+s+'\nendobj\n')};
+add('%PDF-1.4\n');ob(1,'<</Type/Catalog/Pages 2 0 R>>');ob(2,'<</Type/Pages/Kids[3 0 R]/Count 1>>');ob(3,`<</Type/Page/Parent 2 0 R/MediaBox[0 0 ${W} ${Hh}]/Resources<</XObject<</I 4 0 R>>>>/Contents 5 0 R>>`);
+off[4]=len;add(`4 0 obj\n<</Type/XObject/Subtype/Image/Width ${W}/Height ${Hh}/ColorSpace/DeviceRGB/BitsPerComponent 8/Filter/DCTDecode/Length ${b.length}>>\nstream\n`);add(b);add('\nendstream\nendobj\n');
+const cs_=`q ${W} 0 0 ${Hh} 0 0 cm /I Do Q`;ob(5,`<</Length ${cs_.length}>>\nstream\n${cs_}\nendstream`);const xr=len;add('xref\n0 6\n0000000000 65535 f \n'+[1,2,3,4,5].map(n=>String(off[n]).padStart(10,'0')+' 00000 n \n').join('')+`trailer\n<</Size 6/Root 1 0 R>>\nstartxref\n${xr}\n%%EOF`);return new Blob(parts,{type:'application/pdf'})}
+async function ex(kind){const s=PV||S.saved;if(!s)return;const c=draw(s),fn='programa-'+(s.semana||'sin-fecha')+(kind=='png'?'.png':'.pdf');
+try{const blob=kind=='png'?await new Promise(r=>c.toBlob(r,'image/png')):await pdf(c),f=new File([blob],fn,{type:blob.type});
+if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],title:fn});return}catch(e){if(e.name=='AbortError')return}}
+const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=fn;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),5000);toast('Archivo listo')}catch(e){toast('No se pudo exportar')}}
+render();
+if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+pull();document.addEventListener("visibilitychange",()=>{if(!document.hidden)pull()});window.addEventListener("online",()=>pull());
+</script></body></html>
